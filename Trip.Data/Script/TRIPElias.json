@@ -1,0 +1,77 @@
+{
+	"info": {
+		"_postman_id": "44265945-408a-4aea-99f3-a94337bbc0f4",
+		"name": "TRIP Elias",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Obtener todos los vuelos por pesquisa , param: DeparturePoint/ArrivalPoint/DepartureDate",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7073/Trip/flight-result/oneway/BRA/RGS/2022-09-13",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7073",
+					"path": [
+						"Trip",
+						"flight-result",
+						"oneway",
+						"BRA",
+						"RGS",
+						"2022-09-13"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insertar reserva param: /idFlight/idCustomer",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7073/Trip/do-booking-flight/oneway/1/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7073",
+					"path": [
+						"Trip",
+						"do-booking-flight",
+						"oneway",
+						"1",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Obtener reserva por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:7073/Trip/booking-result/1",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "7073",
+					"path": [
+						"Trip",
+						"booking-result",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
