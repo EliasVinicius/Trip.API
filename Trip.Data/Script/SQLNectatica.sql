@@ -1,0 +1,62 @@
+USE tempdb
+IF DB_ID('FlightDB') IS NOT NULL DROP DATABASE FlightDB
+CREATE DATABASE FlightDB
+
+USE FlightDB
+
+IF OBJECT_ID('Flight') IS NOT NULL DROP TABLE Flight
+
+CREATE TABLE Flight
+(ID_Flight INT  IDENTITY(1,1) PRIMARY KEY CLUSTERED,
+DepartureAirport VARCHAR (3),
+DeparturePoint VARCHAR(3),
+DepartureDate DATE,
+DepartureTime VARCHAR(5),
+ArrivalDate DATE,
+ArrivalTime VARCHAR(5),
+ArrivalPoint VARCHAR(3),
+ArrivalAirport VARCHAR(3),
+AeroLineName VARCHAR(50),
+FlightNumber INT,
+PriceAdult FLOAT,
+PriceChildren FLOAT
+)
+
+
+IF OBJECT_ID('Customer') IS NOT NULL DROP TABLE Customer
+
+CREATE TABLE Customer
+(	ID_Customer INT  IDENTITY(1,1) PRIMARY KEY CLUSTERED,
+	CustomerName VARCHAR(30)
+)
+
+IF OBJECT_ID('Booking') IS NOT NULL DROP TABLE Booking
+
+CREATE TABLE Booking
+(	ID_Booking INT  IDENTITY(1,1) PRIMARY KEY CLUSTERED,
+	FK_ID_Flight INT,
+	FK_ID_Customer INT,
+	DateBooking DATE,
+	FOREIGN KEY (FK_ID_Customer) REFERENCES Customer(ID_Customer),
+	FOREIGN KEY (FK_ID_Flight) REFERENCES Flight(ID_Flight),
+	INDEX IX_Booking NONCLUSTERED (FK_ID_Customer, DateBooking)
+)
+
+
+INSERT INTO Flight VALUES
+('GRU','SAO','2022-06-01','16:50','2022-09-25','03:40','RIO','AIR','GOL',234,500,150),
+('CGH ','SAO','2022-07-05','16:50','2022-08-11','06:50','BAH','AIR','LATAM',5522,500,225),
+('SDU','SAN','2022-08-11','16:50','2022-09-02','14:20','REC','AIR','AZUL',7327,500,324.22),
+('BSB ','BRA','2022-09-13','16:50','2022-10-13','11:10','RGS','AIR','AZUL',9561,500,653.21),
+('BSB ','BRA','2022-09-13','16:50','2022-10-13','11:10','RGS','AIR','AZUL',1111,222,250.21),
+('BSB ','BRA','2022-09-13','16:50','2022-10-13','11:10','RGS','AIR','AZUL',1111,222,250.21),
+('BSB ','BRA','2022-09-13','16:50','2022-10-13','11:10','RGS','AIR','AZUL',1111,222,250.21),
+('SSA','SAL','2022-05-22','16:50','2022-11-15','03:05','PAR','AIR','GOL',0098,500,234.90),
+('SSA','SAL','2022-05-22','16:50','2022-11-15','03:05','PAR','AIR','GOL',0098,500,234.90),
+('SSA','SAL','2022-05-22','16:50','2022-11-15','03:05','PAR','AIR','GOL',0098,500,234.90),
+('BEL','BEL','2022-04-18','16:50','2022-12-12','05:08','AMA','AIR','LATAM',0800,500,241)
+
+INSERT INTO CUSTOMER VALUES('Roberto'),('Cristina'),('Magalu')
+
+select * from Flight
+select * from Customer
